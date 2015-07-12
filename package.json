@@ -1,0 +1,18 @@
+{
+    "name": "cheerwe-queue",
+    "version": "1.0.0",
+    "main": "index.js",
+    "description": "a framework about sync queue",
+    "homepage": "https://github.com/cheerwe/cheerwe-queue/",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cheerwe/cheerwe-queue"
+    },
+    "keyword": ["cheerwe", "express ", "queue ", "sync", "sync-queue"],
+    "dependencies": {
+    },
+    "author": {
+        "name": "augustus",
+        "email": "cheerwe@126.com"
+    }
+}
