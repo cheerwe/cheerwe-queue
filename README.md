@@ -5,6 +5,7 @@
 ## Demo
 
 ‘’‘
+
 var WeQueue=require('cheerwe-queue');
 
 WeQueue
