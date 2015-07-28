@@ -48,6 +48,7 @@ Queue.prototype = {
     error: function(fn, callback) {
         this._errorItem = {
             fn: fn,
+            _fn: fn,
             callback: callback
         };
         return this;
@@ -59,7 +60,7 @@ Queue.prototype = {
     },
     _runError: function(err) {
         if (this._errorItem) {
-            var fn = this._endItem.fn;
+            var fn = this._errorItem._fn;
             this._errorItem.fn = fn.bind(this, err);
             this._runItem(this._errorItem, true);
         }
