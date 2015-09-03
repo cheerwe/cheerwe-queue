@@ -1,6 +1,6 @@
 {
     "name": "cheerwe-queue",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "main": "index.js",
     "description": "a framework about sync queue",
     "homepage": "https://github.com/cheerwe/cheerwe-queue/",

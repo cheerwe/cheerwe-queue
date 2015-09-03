@@ -9,10 +9,10 @@ var Queue = function() {
 
 Queue.prototype = {
     then: function(fn, callback) {
-        if (arguments.length == 1) {
+        if (fn && !callback) {
             callback = fn;
             fn = (function(cb) {
-                cb && cb
+                cb && cb();
             }).bind(this, callback);
         }
 
@@ -41,6 +41,7 @@ Queue.prototype = {
     end: function(fn, callback) {
         this._endItem = {
             fn: fn,
+            _fn: fn,
             callback: callback
         };
         return this;
@@ -53,8 +54,10 @@ Queue.prototype = {
         };
         return this;
     },
-    _runEnd: function() {
+    _runEnd: function(ret) {
         if (this._endItem) {
+            var fn = this._endItem._fn;
+            this._endItem.fn = fn.bind(this, ret === false ? false : true);
             this._runItem(this._endItem, true);
         }
     },
@@ -89,7 +92,7 @@ Queue.prototype = {
                     if (ret !== false) {
                         this.run();
                     } else {
-                        this._runEnd();
+                        this._runEnd(false);
                     }
                 }
             }
