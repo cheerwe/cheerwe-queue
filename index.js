@@ -69,7 +69,6 @@ Queue.prototype = {
         }
     },
     _runItem: function(item, isEnd) {
-
         var callback = (function(callback, isEnd, err) {
             var ret = true;
             if (callback) {
@@ -99,7 +98,11 @@ Queue.prototype = {
 
         }).bind(this, item.callback, isEnd);
 
-        item && item.fn && item.fn(callback);
+        try {
+            item && item.fn && item.fn(callback);
+        } catch (err) {
+            this._runError(err);
+        }
     }
 };
 
