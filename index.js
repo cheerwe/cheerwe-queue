@@ -8,7 +8,7 @@ var Queue = function() {
 
 
 Queue.prototype = {
-    then: function(fn, callback) {
+    add: function(fn, callback) {
         if (fn && !callback) {
             callback = fn;
             fn = (function(cb) {
@@ -20,6 +20,11 @@ Queue.prototype = {
             fn: fn,
             callback: callback
         });
+
+        return this;
+    },
+    then: function(fn, callback) {
+        this.add(fn, callback);
 
         this.run();
 
@@ -112,4 +117,10 @@ Queue.then = function(fn, callback) {
 
     return ins;
 };
+
+Queue.add = function(fn, callback) {
+    var ins = new Queue();
+    ins.add(fn, callback);
+    return ins;
+}
 module.exports = Queue;
